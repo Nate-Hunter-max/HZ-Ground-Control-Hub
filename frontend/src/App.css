@@ -1,0 +1,228 @@
+/* Ground Control Hub - Application Styles */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom focus styles for better accessibility */
+.focus\:ring-2:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Pulse animation for status indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom gradient for status indicators */
+.status-gradient {
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+/* Terminal-style font for telemetry data */
+.font-mono {
+  font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+}
+
+.btn-disabled {
+  @apply bg-gray-500 text-gray-300 cursor-not-allowed;
+}
+
+/* Input field styles */
+.input-field {
+  @apply w-full px-3 py-2 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+}
+
+/* Card styles */
+.card {
+  @apply bg-dark-800 p-6 rounded-lg border border-dark-700;
+}
+
+.card-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+/* Status indicators */
+.status-connected {
+  @apply text-green-400;
+}
+
+.status-disconnected {
+  @apply text-gray-400;
+}
+
+.status-error {
+  @apply text-red-400;
+}
+
+.status-warning {
+  @apply text-yellow-400;
+}
+
+/* Telemetry dashboard specific styles */
+.telemetry-value {
+  @apply text-2xl font-mono font-bold;
+}
+
+.telemetry-unit {
+  @apply text-sm text-gray-400 ml-1;
+}
+
+.telemetry-card {
+  @apply card border-l-4;
+}
+
+.telemetry-card.altitude {
+  @apply border-l-blue-500;
+}
+
+.telemetry-card.velocity {
+  @apply border-l-green-500;
+}
+
+.telemetry-card.battery {
+  @apply border-l-yellow-500;
+}
+
+.telemetry-card.signal {
+  @apply border-l-purple-500;
+}
+
+/* Chart container styles */
+.chart-container {
+  @apply bg-dark-800 rounded-lg p-4;
+  min-height: 300px;
+}
+
+/* Terminal styles for LoRa Link */
+.terminal {
+  @apply bg-black text-green-400 font-mono p-4 rounded-lg overflow-y-auto;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+.terminal-input {
+  @apply bg-black text-green-400 font-mono border-none outline-none w-full;
+}
+
+/* Test result styles */
+.test-result.ok {
+  @apply text-green-400 bg-green-900 bg-opacity-20;
+}
+
+.test-result.fail {
+  @apply text-red-400 bg-red-900 bg-opacity-20;
+}
+
+.test-result.error {
+  @apply text-yellow-400 bg-yellow-900 bg-opacity-20;
+}
+
+/* Custom table styles */
+.data-table {
+  @apply w-full bg-dark-800 rounded-lg overflow-hidden;
+}
+
+.data-table th {
+  @apply bg-dark-700 px-4 py-3 text-left text-sm font-medium text-gray-300 uppercase tracking-wider;
+}
+
+.data-table td {
+  @apply px-4 py-3 text-sm text-white border-t border-dark-700;
+}
+
+.data-table tr:hover {
+  @apply bg-dark-700;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none;
+  }
+  
+  .mobile-full {
+    width: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

@@ -4,9 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e2f31e5-215c-475d-881f-c098f5c038fe" name="Changes" comment="PyCharm Init">
+    <list default="true" id="4e2f31e5-215c-475d-881f-c098f5c038fe" name="Changes" comment="Created 1st draft using AI">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/HZ-Ground-Control-Hub.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/models/device.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/services/serial_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/communication/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Start.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/communication/lora_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/api/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/communication/usb_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/api/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/themes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data_parser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/device_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/file_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/parsed_telemetry.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/test_telemetry.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/main_window.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/analysis_tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/flight_tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/lora_tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/settings_tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/tabs/tests_tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/widgets/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/widgets/status_bar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/logger.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +59,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -51,20 +95,91 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/repos/HZ-Ground-Control-Hub&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/repos/HZ-Ground-Control-Hub/backend/app",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\repos\HZ-Ground-Control-Hub\backend\app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\repos\HZ-Ground-Control-Hub\backend" />
       <recent name="C:\repos\HZ-Ground-Control-Hub" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.data_parser">
+  <component name="RunManager" selected="Python.main (1)">
+    <configuration name="Setup (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HZ-Ground-Control-Hub" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/Setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HZ-Ground-Control-Hub" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/frontend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\repos\HZ-Ground-Control-Hub\backend\Setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HZ-Ground-Control-Hub" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\repos\HZ-Ground-Control-Hub\backend\Setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="data_parser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HZ-Ground-Control-Hub" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,7 +201,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="dir_creator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HZ-Ground-Control-Hub" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -94,11 +209,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dir_creator.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -130,9 +245,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.data_parser" />
+        <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.Setup (1)" />
+        <item itemvalue="Python.Setup (1)" />
+        <item itemvalue="Python.Setup" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.dir_creator" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754920559220</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created 1st draft using AI">
+      <option name="closed" value="true" />
+      <created>1754942254254</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754942254254</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,8 +325,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Init" />
     <MESSAGE value="PyCharm Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="PyCharm Init" />
+    <MESSAGE value="Created 1st draft using AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created 1st draft using AI" />
   </component>
 </project>
