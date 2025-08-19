@@ -6,7 +6,7 @@ import logging
 import logging.handlers
 from pathlib import Path
 from datetime import datetime
-from app.core.config import settings
+from ..core.config import settings
 
 
 def setup_logging():
@@ -21,7 +21,7 @@ def setup_logging():
 
     # Configure root logger
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
             logging.handlers.RotatingFileHandler(
@@ -34,8 +34,8 @@ def setup_logging():
     )
 
     # Set specific loggers
-    logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
-    logging.getLogger("fastapi").setLevel(logging.INFO)
+    logging.getLogger("uvicorn.access").setLevel(logging.DEBUG)
+    logging.getLogger("fastapi").setLevel(logging.DEBUG)
 
     logger = logging.getLogger(__name__)
     logger.info("Logging system initialized")

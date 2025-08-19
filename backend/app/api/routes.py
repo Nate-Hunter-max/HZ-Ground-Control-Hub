@@ -1,7 +1,6 @@
 """
 API routes for Ground Control Hub
 """
-
 import json
 import logging
 from datetime import datetime
@@ -15,11 +14,12 @@ from ..models.device import (
     SensorReading
 )
 from ..services.serial_service import serial_service
+from ..websockets.websocket_manager import lora_websocket_manager, websocket_lora_terminal_enhanced
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-# WebSocket connections for real-time updates
+# WebSocket connections for real-time updates (telemetry)
 active_connections: List[WebSocket] = []
 
 
@@ -177,12 +177,26 @@ async def test_preflight():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# Command sending
 @router.post("/commands/send")
 async def send_command(command: str, use_lora: bool = False):
     """Send raw command to device"""
     try:
+        # Send command via WebSocket manager if LoRa and connections exist
+        if use_lora and lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_command_notification(command)
+
         response = serial_service.send_command(command, use_lora)
+
+        # Send response via WebSocket if LoRa
+        if use_lora and lora_websocket_manager.is_active():
+            if response:
+                await lora_websocket_manager.broadcast({
+                    "type": "command_response",
+                    "command": command,
+                    "response": response,
+                    "timestamp": datetime.now().isoformat()
+                })
+
         return {
             "command": command,
             "response": response,
@@ -191,16 +205,30 @@ async def send_command(command: str, use_lora: bool = False):
         }
     except Exception as e:
         logger.error(f"Error sending command: {e}")
+
+        # Send error via WebSocket if LoRa
+        if use_lora and lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_error(f"Command error: {str(e)}")
+
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# LoRa Link specific routes
+# Enhanced LoRa bind command with WebSocket updates
 @router.post("/lora/bind")
 async def bind_lora_satellite():
-    """Bind LoRa satellite"""
+    """Bind LoRa satellite with real-time updates"""
     try:
+        # Notify clients that binding started
+        if lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_status_update("Starting satellite binding...")
+
         response = serial_service.send_command("BIND_SATELLITE", use_lora=True)
         success = response and "OK" in response.upper()
+
+        # Notify clients of binding result
+        if lora_websocket_manager.is_active():
+            message = f"Satellite binding {'successful' if success else 'failed'}"
+            await lora_websocket_manager.send_status_update(message)
 
         return {
             "success": success,
@@ -209,24 +237,43 @@ async def bind_lora_satellite():
         }
     except Exception as e:
         logger.error(f"Error binding LoRa satellite: {e}")
+
+        # Notify clients of error
+        if lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_error(f"Binding error: {str(e)}")
+
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# Enhanced blackbox reading with WebSocket updates
 @router.post("/lora/blackbox")
 async def read_blackbox_via_lora():
-    """Read blackbox data via LoRa Link"""
+    """Read blackbox data via LoRa Link with real-time updates"""
     try:
+        # Notify clients that blackbox reading started
+        if lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_status_update("Starting blackbox data download...")
+
         response = serial_service.send_command("READ_BLACKBOX", use_lora=True)
 
         if not response:
-            raise HTTPException(status_code=500, detail="Failed to read blackbox")
+            error_msg = "Failed to read blackbox - no response"
+            if lora_websocket_manager.is_active():
+                await lora_websocket_manager.send_error(error_msg)
+            raise HTTPException(status_code=500, detail=error_msg)
 
+        # Save blackbox data
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         blackbox_path = settings.gch_directory / "logs" / f"blackbox_{timestamp}.log"
         blackbox_path.parent.mkdir(parents=True, exist_ok=True)
 
         with open(blackbox_path, 'w') as f:
             f.write(response)
+
+        # Notify clients of successful download
+        success_msg = f"Blackbox downloaded: {len(response)} bytes saved to {blackbox_path.name}"
+        if lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_status_update(success_msg)
 
         return {
             "success": True,
@@ -236,7 +283,20 @@ async def read_blackbox_via_lora():
         }
     except Exception as e:
         logger.error(f"Error reading blackbox: {e}")
+
+        # Notify clients of error
+        if lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_error(f"Blackbox read error: {str(e)}")
+
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# Enhanced WebSocket endpoint using the manager
+@router.websocket("/ws/lora-terminal")
+async def websocket_lora_terminal(websocket: WebSocket):
+    """WebSocket endpoint for real-time LoRa terminal updates"""
+    logger.debug("New connection to LoRa WS")
+    await websocket_lora_terminal_enhanced(websocket)
 
 
 # WebSocket for real-time telemetry
@@ -326,6 +386,12 @@ async def connect_device(device_type: str, port: Optional[str] = None):
         if not success:
             raise HTTPException(status_code=500, detail="Failed to connect")
 
+        # Notify WebSocket clients of connection
+        if device_type == "lora_link" and lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_status_update(
+                f"Connected to LoRa Link on {port or 'auto-detected port'}"
+            )
+
         return {"status": "connected", "device_type": device_type, "port": port}
     except Exception as e:
         logger.error(f"Error connecting to {device_type}: {e}")
@@ -342,6 +408,10 @@ async def disconnect_device(device_type: str):
             serial_service.disconnect_lora_link()
         else:
             raise HTTPException(status_code=400, detail="Invalid device type")
+
+        # Notify WebSocket clients of disconnection
+        if device_type == "lora_link" and lora_websocket_manager.is_active():
+            await lora_websocket_manager.send_status_update("Disconnected from LoRa Link")
 
         return {"status": "disconnected", "device_type": device_type}
     except Exception as e:
